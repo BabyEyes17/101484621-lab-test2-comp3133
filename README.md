@@ -1,59 +1,68 @@
-# 101484621LabTest2Comp3133
+# COMP3133 - Lab Test 2 | SpaceX Mission Explorer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
+A SpaceX mission tracking application built with Angular 21 and Angular Material.
 
-## Development server
+---
 
-To start a local development server, run:
+## Features Implemented
+
+- **Mission List** — Displays all SpaceX launches fetched from the SpaceX REST API, showing the mission patch, name, launch year, and details for each mission.
+- **Mission Filter** — Allows users to filter missions by launch year using the SpaceX filter endpoint.
+- **Mission Details** — Clicking a mission navigates to a detailed view showing rocket info, launch details, and links to the article, Wikipedia page, and video.
+- **Angular Material UI** — Cards, buttons, icons, form fields used throughout the app.
+- **SpaceX REST API Integration** — Data fetched via a dedicated Angular service using `HttpClient`.
+- **TypeScript Interface** — `Mission` interface defined to type all API responses.
+- **Routing** — Angular Router with `/missions` and `/mission/:id` routes.
+
+---
+
+## Screenshots
+
+### Mission List
+![Mission List](img/missions_list.png)
+
+Displays all SpaceX launches in Material cards with mission patch image, mission name, launch year, and details.
+
+### Mission Filter
+![Mission Filter](img/filter_applied.jpg)
+
+Users can type a launch year (e.g. `2015`) and click Filter to narrow down the list. Clicking Clear reloads all missions.
+
+### Mission Details
+![Mission Details](img/mission_details.png)
+
+Shows detailed info about a selected mission including rocket name/type, launch details, and icon links to the article, Wikipedia, and video.
+
+---
+
+## How to Run
+
+**Prerequisites:** Node.js and Angular CLI installed.
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/101484621-lab-test2-comp3133.git
+
+# 2. Navigate into the project
+cd 101484621-lab-test2-comp3133
+
+# 3. Install dependencies
+npm install
+
+# 4. Run the development server
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Then open your browser and go to `http://localhost:4200`.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## API Reference
 
-```bash
-ng generate component component-name
-```
+- All launches: `https://api.spacexdata.com/v3/launches`
+- Single launch: `https://api.spacexdata.com/v3/launches/{flight_number}`
+- Filter by year: `https://api.spacexdata.com/v3/launches?launch_year={year}`
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+*Developed by Jayden Lewis - 101484621*
