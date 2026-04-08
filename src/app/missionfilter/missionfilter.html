@@ -1,1 +1,23 @@
-<p>missionfilter works!</p>
+<div class="filter-container">
+  
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Launch Year</mat-label>
+  
+    <input 
+      matInput 
+      [(ngModel)]="selectedYear" 
+      (ngModelChange)="onFilter($event)" 
+      type="number" 
+      min="2006" 
+      placeholder="e.g. 2006"
+    >
+  
+    <mat-icon matPrefix>calendar_today</mat-icon>
+  </mat-form-field>
+
+  <button mat-stroked-button (click)="onClear()">
+    <mat-icon>restart_alt</mat-icon>
+    Clear
+  </button>
+
+</div>

@@ -1,0 +1,52 @@
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 24px 0;
+  padding: 0 16px;
+}
+
+mat-form-field {
+  width: 200px;
+}
+
+/* Makes the input text and label white */
+mat-form-field {
+  --mdc-outlined-idle-outline-color: white;
+  --mdc-outlined-hover-outline-color: white;
+  --mdc-outlined-active-outline-color: white;
+}
+
+input {
+  color: white !important;
+}
+
+mat-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Makes icons and clear button text white */
+mat-icon, button[mat-stroked-button] {
+  color: white;
+  border-color: white;
+}
+
+mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
