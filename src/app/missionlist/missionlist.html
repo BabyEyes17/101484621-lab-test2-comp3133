@@ -1,14 +1,43 @@
-<h1>SpaceX Mission Launch List</h1>
+<div class="list-container">
+  <header class="main-header">
+    <h1>SpaceX Missions</h1>
+    <br>
+    <p class="subtitle">"Making Life Multiplanetary"</p>
+  </header>
 
-<div *ngFor="let mission of missions">
-  <mat-card [routerLink]="['/mission', mission.flight_number]" class="mission-card">
-    <mat-card-header>
-      <img mat-card-avatar [src]="mission.links.mission_patch_small" alt="patch">
-      <mat-card-title>{{ mission.mission_name }}</mat-card-title>
-      <mat-card-subtitle>{{ mission.launch_year }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{ mission.details }}</p>
-    </mat-card-content>
-  </mat-card>
+  <app-missionfilter (yearSelected)="onYearFilter($event)"></app-missionfilter>
+
+  @if (missions.length > 0) {
+    <div class="mission-grid">
+      @for (mission of missions; track mission.flight_number) {
+        <mat-card class="mission-card" appearance="outlined">
+          <mat-card-header>
+            <div mat-card-avatar class="avatar-container">
+              <img [src]="mission.links.mission_patch_small" alt="patch">
+            </div>
+            <mat-card-title>{{ mission.mission_name }}</mat-card-title>
+            <mat-card-subtitle>Launch Year: {{ mission.launch_year }}</mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content>
+            <p class="truncate-text">{{ mission.details || 'Mission details are currently unavailable for this flight.' }}</p>
+          </mat-card-content>
+          
+          <mat-card-footer [routerLink]="['/mission', mission.flight_number]">
+            <div class="card-footer-content">
+              <span>Flight #{{ mission.flight_number }}</span>
+              <mat-icon>chevron_right</mat-icon>
+            </div>
+          </mat-card-footer>
+        </mat-card>
+      }
+    </div>
+  } @else {
+    <div class="no-results">
+      <mat-icon>rocket_launch</mat-icon>
+      <h2>No Missions Found</h2>
+      <p>Try clearing your filters to see more results.</p>
+      <button mat-flat-button color="primary" (click)="loadMissions()">Reset Filter</button>
+    </div>
+  }
 </div>
