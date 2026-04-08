@@ -14,7 +14,7 @@ export class Spacexapi {
   constructor(private http: HttpClient) {}
 
   // Get all Missions
-  get missions(): Observable<Mission[]> {
+  getMissions(): Observable<Mission[]> {
 
     return this.http.get<Mission[]>(this.apiUrl)
   }
