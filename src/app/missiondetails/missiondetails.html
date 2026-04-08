@@ -1,1 +1,80 @@
-<p>missiondetails works!</p>
+<div class="details-page-wrapper">
+  @if (mission) {
+  <div class="details-container">
+    <header class="page-header">
+      <button mat-icon-button routerLink="/missions">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h1>Mission Details</h1>
+    </header>
+
+    <mat-card class="mission-detail-card">
+      <mat-card-header>
+        <div class="patch-container">
+          <img [src]="mission.links.mission_patch_small" alt="Patch">
+        </div>
+        <div>
+          <mat-card-title>{{ mission.mission_name }}</mat-card-title>
+          <mat-card-subtitle>
+            Flight #{{ mission.flight_number }} | {{ mission.launch_year }}
+          </mat-card-subtitle>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="status-banner" [class.success]="mission.launch_success" [class.failure]="!mission.launch_success">
+          <mat-icon>{{ mission.launch_success ? 'check_circle' : 'error' }}</mat-icon>
+          <span>Launch {{ mission.launch_success ? 'Successful' : 'Failed' }}</span>
+        </div>
+
+        <div class="info-grid">
+          <section>
+            <h3><mat-icon>rocket</mat-icon> Rocket</h3>
+            <p><strong>Name:</strong> {{ mission.rocket.rocket_name }}</p>
+            <p><strong>Type:</strong> {{ mission.rocket.rocket_type }}</p>
+          </section>
+
+          @if (mission.launch_site) {
+          <section>
+            <h3><mat-icon>place</mat-icon> Launch Site</h3>
+            <p><strong>Site:</strong> {{ mission.launch_site.site_name }}</p>
+            <p class="small-text">{{ mission.launch_site.site_name_long }}</p>
+          </section>
+          }
+        </div>
+
+        <section class="description-section">
+          <h3><mat-icon>notes</mat-icon> Mission Summary</h3>
+          <p class="details-text">{{ mission.details || 'No details available.' }}</p>
+
+          @if (!mission.launch_success && mission.launch_failure_details) {
+          <p class="failure-note">
+            <strong>Failure Reason:</strong> {{ mission.launch_failure_details.reason }}
+          </p>
+          }
+        </section>
+
+        <mat-divider></mat-divider>
+
+        <div class="button-row">
+          @if (mission.links.article_link) {
+          <a [href]="mission.links.article_link" target="_blank" mat-stroked-button color="primary">
+            <mat-icon>article</mat-icon> Article
+          </a>
+          }
+          @if (mission.links.wikipedia) {
+          <a [href]="mission.links.wikipedia" target="_blank" mat-stroked-button color="primary">
+            <mat-icon>language</mat-icon> Wikipedia
+          </a>
+          }
+          @if (mission.links.video_link) {
+          <a [href]="mission.links.video_link" target="_blank" mat-flat-button color="warn">
+            <mat-icon>play_circle</mat-icon> Watch Launch
+          </a>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  }
+</div>
